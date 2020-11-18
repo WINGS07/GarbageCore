@@ -42,13 +42,16 @@ public class LoopedHTTPDown
 				Files.copy(dest.toPath(), cfile.toPath());
 				copyoperations ++;
 				System.out.println(copyoperations + " Copy Operations");
+				System.out.println();
 				
 				System.gc();
 				gcoperations ++;
-				System.out.println(gcoperations + " GC operations");
-				System.out.println(Runtime.getRuntime().freeMemory() + " mem free");
-				System.out.println(Runtime.getRuntime().totalMemory() + " mem used");
-				System.out.println(Runtime.getRuntime().maxMemory() + " mem MAX");
+				System.out.println(gcoperations +
+						" JAVAGC operations, " +
+						Runtime.getRuntime().maxMemory() / 1073741824 +
+						"GB mem MAX, " +
+						Runtime.getRuntime().freeMemory() / 1073741824 +
+						"GB mem free");
 				}
 			}
         } catch (Exception ex) {
@@ -58,9 +61,8 @@ public class LoopedHTTPDown
             System.out.println();
             
             System.out.println(gcoperations + " GC operations");
-			System.out.println(Runtime.getRuntime().freeMemory() + " mem free");
-			System.out.println(Runtime.getRuntime().totalMemory() + " mem used");
-			System.out.println(Runtime.getRuntime().maxMemory() + " mem MAX");
+			System.out.println(Runtime.getRuntime().freeMemory() / 1073741824 + "GB mem free");
+			System.out.println(Runtime.getRuntime().maxMemory() / 1073741824 + "GB mem MAX");
         }
 	}
 }
