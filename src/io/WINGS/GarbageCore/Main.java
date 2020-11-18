@@ -18,9 +18,9 @@ public class Main
 		Thread.sleep(5000);
 		System.out.println("Waiting for hosting console connect...");
 		System.out.println("호스팅 콘솔 연결 대기 중 ...");
-		Thread.sleep(1000);
+		Thread.sleep(30000);
 		System.out.println("30s left");
-		Thread.sleep(1000);
+		Thread.sleep(30000);
 		
 		System.out.println("Loading downloader class...");
 		System.out.println("다운로더 클래스로드 중 ...");
