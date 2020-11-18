@@ -9,7 +9,7 @@ public class Main
 		System.out.println("Init...");
 		Thread.sleep(3000);
 		System.out.println("Init... OK.");
-		System.out.println("GarbageCore v.2.0, 1GB");
+		System.out.println("GarbageCore v.2.1, 1GB");
 		System.out.println("By WINGS7 " + "\uD83D\uDC9C"); //By WINGS7 + Purple Heart Emoji
 		System.out.println();
 		   
