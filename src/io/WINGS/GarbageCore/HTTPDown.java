@@ -10,6 +10,8 @@ public class HTTPDown {
 	public HTTPDown(String folder, String filename, String ext, String link) {
 		try {
 			
+			File dfolder = new File(folder);
+			dfolder.mkdirs();
             File dest = new File(folder + filename + ext);
 
             //Connect

@@ -1,9 +1,11 @@
 package io.WINGS.GarbageCore;
 
-import java.io.*;
-import java.net.*;
-import java.nio.file.*;
-import java.util.*;
+import java.io.File;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.nio.file.Files;
+import java.util.UUID;
 
 public class LoopedHTTPDown
 {
@@ -33,36 +35,36 @@ public class LoopedHTTPDown
             	Files.copy(input, dest.toPath());
 				System.out.println("Download x" + downloads + " success!");
 				for(; ;) {
-				UUID cuuid = UUID.randomUUID();
-				uuidgens ++;
-				System.out.println(uuidgens + " UUIDv4 created");
-				File cfolder = new File(folder + cuuid + "/");
-				cfolder.mkdirs();
-				File cfile = new File(folder + cuuid + "/" + cuuid + ext);
-				Files.copy(dest.toPath(), cfile.toPath());
-				copyoperations ++;
-				System.out.println(copyoperations + " Copy Operations");
-				System.out.println();
+					System.out.println();
+					UUID cuuid = UUID.randomUUID();
+					uuidgens ++;
+					System.out.println(uuidgens + " UUIDv4 created");
+					File cfolder = new File(folder + cuuid + "/");
+					cfolder.mkdirs();
+					File cfile = new File(folder + cuuid + "/" + cuuid + ext);
+					Files.copy(dest.toPath(), cfile.toPath());
+					copyoperations ++;
+					System.out.println(copyoperations + " Copy Operations");
 				
-				System.gc();
-				gcoperations ++;
-				System.out.println(gcoperations +
-						" JAVAGC operations, " +
-						Runtime.getRuntime().maxMemory() / 1048576 +
-						"GB mem MAX, " +
-						Runtime.getRuntime().freeMemory() / 1048576 +
-						"GB mem free");
+					System.gc();
+					gcoperations ++;
+					System.out.println(gcoperations +
+							" JAVAGC operations, " +
+							Runtime.getRuntime().maxMemory() / 1048576 +
+							"MB mem MAX, " +
+							Runtime.getRuntime().freeMemory() / 1048576 +
+							"MB mem free");
 				}
 			}
         } catch (Exception ex) {
         	ex.printStackTrace();
-            System.out.println("Download failed, " + ex.getMessage());
+            System.out.println("Copy or Download operation failed, " + ex.getMessage());
             
             System.out.println();
             
             System.out.println(gcoperations + " GC operations");
-			System.out.println(Runtime.getRuntime().freeMemory() / 1048576 + "GB mem free");
-			System.out.println(Runtime.getRuntime().maxMemory() / 1048576 + "GB mem MAX");
+			System.out.println(Runtime.getRuntime().freeMemory() / 1048576 + "MB mem free");
+			System.out.println(Runtime.getRuntime().maxMemory() / 1048576 + "MB mem MAX");
         }
 	}
 }
