@@ -38,7 +38,7 @@ public class LoopedHTTPDown
 					System.out.println();
 					UUID cuuid = UUID.randomUUID();
 					uuidgens ++;
-					System.out.println(uuidgens + " UUIDv4 created");
+					System.out.println(uuidgens + " UUIDv4-gen Operations");
 					File cfolder = new File(folder + cuuid + "/");
 					cfolder.mkdirs();
 					File cfile = new File(folder + cuuid + "/" + cuuid + ext);
@@ -49,11 +49,13 @@ public class LoopedHTTPDown
 					System.gc();
 					gcoperations ++;
 					System.out.println(gcoperations +
-							" JAVAGC operations, " +
+							" JAVAGC Operations, " +
 							Runtime.getRuntime().maxMemory() / 1048576 +
 							"MB mem MAX, " +
+							(Runtime.getRuntime().maxMemory() - Runtime.getRuntime().freeMemory()) / 1048576 +
+							"MB mem USED, " +
 							Runtime.getRuntime().freeMemory() / 1048576 +
-							"MB mem free");
+							"MB mem FREE");
 				}
 			}
         } catch (Exception ex) {
@@ -63,8 +65,9 @@ public class LoopedHTTPDown
             System.out.println();
             
             System.out.println(gcoperations + " GC operations");
-			System.out.println(Runtime.getRuntime().freeMemory() / 1048576 + "MB mem free");
-			System.out.println(Runtime.getRuntime().maxMemory() / 1048576 + "MB mem MAX");
+            System.out.println(Runtime.getRuntime().maxMemory() / 1048576 + "MB mem MAX");
+            System.out.println((Runtime.getRuntime().maxMemory() - Runtime.getRuntime().freeMemory()) / 1048576 + "MB mem USED");
+			System.out.println(Runtime.getRuntime().freeMemory() / 1048576 + "MB mem FREE");
         }
 	}
 }
