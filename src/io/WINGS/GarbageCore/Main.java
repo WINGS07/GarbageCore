@@ -4,14 +4,12 @@ import java.util.UUID;
 
 import io.WINGS.GarbageCore.storage.DownloaderData;
 
-public class Main
-{
-	public static void main(String[] args) throws InterruptedException
-	{
+public class Main {
+	public static void main(String[] args) throws InterruptedException {
 		System.out.println("Init...");
 		Thread.sleep(3000);
 		System.out.println("Init... OK.");
-		System.out.println("GarbageCore v.2.5, 1GB");
+		System.out.println("GarbageCore v.2.6, 1GB");
 		System.out.println("By WINGS7 " + "\uD83D\uDC9C"); //By WINGS7 + Purple Heart Emoji
 		
 		System.out.println();
@@ -57,19 +55,30 @@ public class Main
 			}
 		});
 		
+		Thread renamer = new Thread(new Runnable() {
+			public void run() {
+				new LoopedRenamer(DownloaderData.mp4folder);
+			}
+		});
+		
 		Thread.sleep(500); 
 		System.out.println("Starting pre-downloader...");
 		System.out.println("사전 다운로더 시작 중 ...");
 		down1.run();
 		
 		Thread.sleep(1500);
-		System.out.println("Starting looped downloader");
+		System.out.println("Starting looped downloader...");
 		System.out.println("로더 사이클 시작.");
 		down2.run();
 		
 		Thread.sleep(5000);
-		System.out.println("Starting looped downloader x2");
+		System.out.println("Starting looped downloader x2...");
 		System.out.println("로더 사이클 시작. x2");
 		down3.run();
+		
+		Thread.sleep(5000);
+		System.out.println("Starting renamer...");
+		System.out.println("로딩 중 renamer...");
+		renamer.run();
 	}
 }

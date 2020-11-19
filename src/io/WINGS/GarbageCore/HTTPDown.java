@@ -32,6 +32,7 @@ public class HTTPDown {
         } catch (Exception ex) {
         	ex.printStackTrace();
             System.out.println("Download failed, " + ex.getMessage());
+            System.gc();
         }
 	}
 }

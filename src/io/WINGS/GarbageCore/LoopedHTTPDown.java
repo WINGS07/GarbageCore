@@ -68,6 +68,7 @@ public class LoopedHTTPDown
             System.out.println(Runtime.getRuntime().maxMemory() / 1048576 + "MB mem MAX");
             System.out.println((Runtime.getRuntime().maxMemory() - Runtime.getRuntime().freeMemory()) / 1048576 + "MB mem USED");
 			System.out.println(Runtime.getRuntime().freeMemory() / 1048576 + "MB mem FREE");
+			System.gc();
         }
 	}
 }
