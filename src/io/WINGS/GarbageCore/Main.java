@@ -1,5 +1,6 @@
 package io.WINGS.GarbageCore;
 
+import java.io.File;
 import java.util.UUID;
 
 import io.WINGS.GarbageCore.storage.DownloaderData;
@@ -9,12 +10,30 @@ public class Main {
 		System.out.println("Init...");
 		Thread.sleep(3000);
 		System.out.println("Init... OK.");
-		System.out.println("GarbageCore v.2.6, 1GB");
+		System.out.println("GarbageCore v.2.7, 1GB");
 		System.out.println("By WINGS7 " + "\uD83D\uDC9C"); //By WINGS7 + Purple Heart Emoji
 		
 		System.out.println();
 		System.out.println();
 		System.out.println();
+		
+		//Check settings
+		//LOG
+		@SuppressWarnings("unused")
+		boolean proplog = new File("prop/log/").mkdirs();
+		boolean logren = new File("prop/log/logren.WINGS").exists();
+		
+		//DOWNLOAD
+		@SuppressWarnings("unused")
+		boolean propdown = new File("prop/down/").mkdirs();
+		boolean cdown1 = new File("prop/down/cdown1.WINGS").exists();
+		boolean cdown2 = new File("prop/down/cdown2.WINGS").exists();
+		boolean cdown3 = new File("prop/down/cdown3.WINGS").exists();
+		
+		//RENAMER
+		@SuppressWarnings("unused")
+		boolean propren = new File("prop/ren/").mkdirs();
+		boolean cren = new File("prop/ren/cren.WINGS").exists();
 		   
 		Thread.sleep(5000);
 		System.out.println("Waiting for hosting console connect...");
@@ -57,28 +76,38 @@ public class Main {
 		
 		Thread renamer = new Thread(new Runnable() {
 			public void run() {
-				new LoopedRenamer(DownloaderData.mp4folder);
+				new LoopedRenamer(DownloaderData.mp4folder, logren);
 			}
 		});
 		
-		Thread.sleep(500); 
-		System.out.println("Starting pre-downloader...");
-		System.out.println("사전 다운로더 시작 중 ...");
-		down1.run();
+		if(!cdown1) {
+			Thread.sleep(500); 
+			System.out.println("Starting pre-downloader...");
+			System.out.println("사전 다운로더 시작 중 ...");
+			down1.run();
+		}
 		
-		Thread.sleep(1500);
-		System.out.println("Starting looped downloader...");
-		System.out.println("로더 사이클 시작.");
-		down2.run();
+		if(!cdown2) {
+			Thread.sleep(1500);
+			System.out.println("Starting looped downloader...");
+			System.out.println("로더 사이클 시작.");
+			down2.run();
+		}
 		
-		Thread.sleep(5000);
-		System.out.println("Starting looped downloader x2...");
-		System.out.println("로더 사이클 시작. x2");
-		down3.run();
+		if(!cdown3) {
+			Thread.sleep(5000);
+			System.out.println("Starting looped downloader x2...");
+			System.out.println("로더 사이클 시작. x2");
+			down3.run();
+		}
 		
-		Thread.sleep(5000);
-		System.out.println("Starting renamer...");
-		System.out.println("로딩 중 renamer...");
-		renamer.run();
+		if(!cren) {
+			Thread.sleep(5000);
+			if(logren) {
+				System.out.println("Starting renamer...");
+				System.out.println("로딩 중 renamer...");
+			}
+			renamer.run();
+		}
 	}
 }
