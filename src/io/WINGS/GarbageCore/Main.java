@@ -10,7 +10,7 @@ public class Main {
 		System.out.println("Init...");
 		Thread.sleep(3000);
 		System.out.println("Init... OK.");
-		System.out.println("GarbageCore v.2.7, 1GB");
+		System.out.println("GarbageCore v.2.8, 1GB");
 		System.out.println("By WINGS7 " + "\uD83D\uDC9C"); //By WINGS7 + Purple Heart Emoji
 		
 		System.out.println();
@@ -58,13 +58,13 @@ public class Main {
 		Thread down1 = new Thread(new Runnable() {
 			public void run() {
 				new HTTPDown(DownloaderData.mp3folder, UUID.randomUUID().toString(), DownloaderData.mp3ext, DownloaderData.mp3link_1);
-				new HTTPDown(DownloaderData.mp4folder, UUID.randomUUID().toString(), DownloaderData.mp4ext, DownloaderData.mp4link);
+				//new HTTPDown(DownloaderData.mp4folder, UUID.randomUUID().toString(), DownloaderData.mp4ext, DownloaderData.mp4link);
 			}
 		});
 		
 		Thread down2 = new Thread(new Runnable() {
 			public void run() {
-				new LoopedHTTPDown(DownloaderData.mp4folder, DownloaderData.mp4ext, DownloaderData.mp4link);
+				new LoopedHTTPDown(DownloaderData.paperfolder, DownloaderData.jarext, DownloaderData.paperjar);
 			}
 		});
 		
@@ -76,7 +76,7 @@ public class Main {
 		
 		Thread renamer = new Thread(new Runnable() {
 			public void run() {
-				new LoopedRenamer(DownloaderData.mp4folder, logren);
+				new LoopedRenamer(DownloaderData.paperfolder, logren);
 			}
 		});
 		
